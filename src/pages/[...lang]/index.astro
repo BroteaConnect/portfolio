@@ -352,7 +352,11 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
     if ((e.target as HTMLElement).closest('a')) setMenu(false);
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && nav?.classList.contains('is-open')) setMenu(false);
+    if (e.key === 'Escape' && nav?.classList.contains('is-open')) {
+      setMenu(false);
+      // El foco estaba dentro del panel ahora display:none; sin esto cae al body.
+      menuBtn?.focus();
+    }
   });
 
   const form = document.getElementById('pf-form') as HTMLFormElement;
@@ -621,7 +625,9 @@ a:hover { text-decoration-thickness: 2px; }
 
 
 
-  html { scroll-behavior: smooth; }
+  /* El header sticky mide ~76px en móvil: sin este offset los anchors del
+     menú dejan el título de la sección debajo del header translúcido. */
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; }
   body { margin: 0; background: var(--pf-ground); }
   a { color: inherit; text-decoration: none; }
   a:hover { color: var(--pf-accent, var(--pf-accent)); }
@@ -774,9 +780,16 @@ a:hover { text-decoration-thickness: 2px; }
 @media (max-width: 600px) {
   /* No caben logo + switcher + CTA + botón en 320px: el switcher baja al
      panel del menú (mismo componente, segunda instancia). */
-  .pf-header-actions > .lang { display: none; }
+  /* !important: el CSS scoped de LanguageSwitcher (atributo data-astro-cid)
+     gana en especificidad/orden a estas reglas de página y el componente es
+     generado (no se edita); sin esto los enlaces quedan bajo 44px. */
+  .pf-header-actions > .lang { display: none !important; }
   .pf-nav-lang { display: flex; padding: 8px 6px 0; }
-  .pf-nav-lang .lang a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; font-size: 15px; }
+  .pf-nav-lang .lang a {
+    display: inline-flex; align-items: center; justify-content: center;
+    box-sizing: border-box; min-height: 44px; min-width: 44px;
+    padding: 0 14px !important; font-size: 15px !important;
+  }
 }
 
 @media (max-width: 480px) {
