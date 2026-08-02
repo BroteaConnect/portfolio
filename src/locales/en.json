@@ -25,6 +25,8 @@
   "invalid": "Please check the required fields before sending.",
   "nav.language": "Language",
   "navCta": "Let's talk",
+  "navMenuClose": "Close menu",
+  "navMenuOpen": "Open menu",
   "navPartners": "Partners",
   "navProducts": "Products",
   "navServices": "Services",

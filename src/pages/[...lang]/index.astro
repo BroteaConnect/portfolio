@@ -20,29 +20,41 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
 ---
 
 <Layout locale={locale} bare dark>
-  <div style="background:var(--pf-ground,var(--pf-ground));color:#fff;font-family:var(--font-body);overflow-x:hidden">
+  <div class="pf-page" style="background:var(--pf-ground,var(--pf-ground));color:#fff;font-family:var(--font-body)">
 
-    <header style="position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(9,9,45,.72);border-bottom:1px solid rgba(255,255,255,.10)">
-      <div style="max-width:1280px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <header class="pf-header">
+      <div class="pf-header-in">
         <a href="#top" style="display:flex;align-items:center"><img src="/img/fda5ee03.webp" alt="Brotea" style="height:30px;width:auto;display:block"></a>
-        <nav style="display:flex;align-items:center;gap:32px;font-size:14px;letter-spacing:.01em">
+        <nav class="pf-nav" id="pf-nav">
           <a href="#servicios">{t(locale, 'navServices')}</a>
           <a href="#proyectos">{t(locale, 'navWork')}</a>
           <a href="#productos">{t(locale, 'navProducts')}</a>
           <a href="#equipo">{t(locale, 'navTeam')}</a>
           <a href="#aliados">{t(locale, 'navPartners')}</a>
+          <div class="pf-nav-lang"><LanguageSwitcher locale={locale} /></div>
         </nav>
-        <div style="display:flex;align-items:center;gap:16px">
+        <div class="pf-header-actions">
           <LanguageSwitcher locale={locale} />
-          <a href="#contacto" style="display:inline-flex;align-items:center;gap:10px;background:var(--pf-accent,var(--pf-accent));color:var(--pf-ground);padding:12px 22px;border-radius:999px;font-size:14px;font-weight:800;white-space:nowrap;transition:transform 220ms cubic-bezier(.2,.7,.2,1)" data-hv="1">{t(locale, 'navCta')}<span style="font-family:var(--font-pixel);font-size:12px">→</span></a>
+          <a href="#contacto" class="pf-cta" style="background:var(--pf-accent,var(--pf-accent));color:var(--pf-ground);border-radius:999px;font-weight:800;transition:transform 220ms cubic-bezier(.2,.7,.2,1)" data-hv="1">{t(locale, 'navCta')}<span class="pf-cta-arrow" style="font-family:var(--font-pixel);font-size:12px">→</span></a>
+          <button
+            id="pf-menu-btn"
+            class="pf-menu-btn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="pf-nav"
+            aria-label={t(locale, 'navMenuOpen')}
+            data-label-open={t(locale, 'navMenuOpen')}
+            data-label-close={t(locale, 'navMenuClose')}
+            data-fv="1"
+          ><span class="pf-menu-icon" aria-hidden="true"></span></button>
         </div>
       </div>
     </header>
 
-    <section id="top" style="max-width:1280px;margin:0 auto;padding:96px 32px 64px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:64px;align-items:center">
-      <div style="display:grid;gap:32px;min-width:0">
+    <section id="top" class="pf-hero">
+      <div class="pf-hero-copy">
         <span style="font-family:var(--font-pixel);font-size:14px;letter-spacing:.14em;color:var(--pf-accent,var(--pf-accent))">LEARN GROW LEAD</span>
-        <h1 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:clamp(44px,5.4vw,76px);line-height:.98;letter-spacing:-.03em;margin:0;text-wrap:balance">{t(locale, 'heroA')} <span style="color:var(--pf-violet)">{t(locale, 'heroB')}</span>.</h1>
+        <h1 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:clamp(36px,5.4vw,76px);line-height:.98;letter-spacing:-.03em;margin:0;text-wrap:balance">{t(locale, 'heroA')} <span style="color:var(--pf-violet)">{t(locale, 'heroB')}</span>.</h1>
         <p style="font-size:19px;line-height:1.55;color:rgba(255,255,255,.72);max-width:52ch;margin:0">{t(locale, 'heroLead')}</p>
         <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
           <a href="#proyectos" style="display:inline-flex;align-items:center;gap:12px;background:var(--pf-violet);color:#fff;padding:16px 28px;border-radius:999px;font-size:15px;font-weight:800;transition:transform 220ms cubic-bezier(.2,.7,.2,1)" data-hv="2">{t(locale, 'heroCta1')}</a>
@@ -52,14 +64,14 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
       <div style="position:relative;padding:14px;min-width:0;width:100%">
         <span style="position:absolute;top:0;right:0;width:34px;height:34px;border-top:3px solid var(--pf-accent,var(--pf-accent));border-right:3px solid var(--pf-accent,var(--pf-accent))"></span>
         <span style="position:absolute;bottom:0;left:0;width:34px;height:34px;border-bottom:3px solid var(--pf-accent,var(--pf-accent));border-left:3px solid var(--pf-accent,var(--pf-accent))"></span>
-        <div style="position:relative;height:460px;border-radius:48px;overflow:hidden;background:transparent">
+        <div class="pf-hero-img" style="background:transparent">
           <img src="/img/96cc214f.webp" alt="Foto de comunidad Brotea" loading="lazy" decoding="async" style="background:transparent;width:100%;height:100%;object-fit:cover;display:block" />
         </div>
       </div>
     </section>
 
     <div style="border-top:1px solid rgba(255,255,255,.10);border-bottom:1px solid rgba(255,255,255,.10);overflow:hidden">
-      <div style="display:flex;width:max-content;animation:pf-marquee 32s linear infinite">
+      <div class="pf-marquee">
         <div style="display:flex;align-items:center;gap:48px;padding:14px 24px;font-family:var(--font-pixel);font-size:14px;letter-spacing:.12em;color:rgba(255,255,255,.62);white-space:nowrap">
           <span>BROTEMOS JUNTOS</span><span style="color:var(--pf-violet)">◆</span><span>BLOOM TOGETHER</span><span style="color:var(--pf-accent,var(--pf-accent))">◆</span><span>WHERE IDEAS BLOOM</span><span style="color:var(--pf-pink)">◆</span><span>WE BLOOM THE FUTURE</span><span style="color:var(--pf-violet)">◆</span>
         </div>
@@ -69,48 +81,48 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
       </div>
     </div>
 
-    <section style="max-width:1280px;margin:0 auto;padding:64px 32px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px">
-      <div style="display:grid;gap:8px"><span style="font-family:var(--font-display-inktrap);font-weight:800;font-size:52px;line-height:1;color:var(--pf-accent,var(--pf-accent))">1.200+</span><span style="font-size:14px;color:rgba(255,255,255,.62)">{t(locale, 'stat1')}</span></div>
-      <div style="display:grid;gap:8px"><span style="font-family:var(--font-display-inktrap);font-weight:800;font-size:52px;line-height:1;color:var(--pf-accent,var(--pf-accent))">48</span><span style="font-size:14px;color:rgba(255,255,255,.62)">{t(locale, 'stat2')}</span></div>
-      <div style="display:grid;gap:8px"><span style="font-family:var(--font-display-inktrap);font-weight:800;font-size:52px;line-height:1;color:var(--pf-accent,var(--pf-accent))">30</span><span style="font-size:14px;color:rgba(255,255,255,.62)">{t(locale, 'stat3')}</span></div>
-      <div style="display:grid;gap:8px"><span style="font-family:var(--font-display-inktrap);font-weight:800;font-size:52px;line-height:1;color:var(--pf-accent,var(--pf-accent))">4</span><span style="font-size:14px;color:rgba(255,255,255,.62)">{t(locale, 'stat4')}</span></div>
+    <section class="pf-stats">
+      <div style="display:grid;gap:8px"><span class="pf-stat-num" style="font-family:var(--font-display-inktrap);font-weight:800;line-height:1;color:var(--pf-accent,var(--pf-accent))">1.200+</span><span style="font-size:14px;color:rgba(255,255,255,.62)">{t(locale, 'stat1')}</span></div>
+      <div style="display:grid;gap:8px"><span class="pf-stat-num" style="font-family:var(--font-display-inktrap);font-weight:800;line-height:1;color:var(--pf-accent,var(--pf-accent))">48</span><span style="font-size:14px;color:rgba(255,255,255,.62)">{t(locale, 'stat2')}</span></div>
+      <div style="display:grid;gap:8px"><span class="pf-stat-num" style="font-family:var(--font-display-inktrap);font-weight:800;line-height:1;color:var(--pf-accent,var(--pf-accent))">30</span><span style="font-size:14px;color:rgba(255,255,255,.62)">{t(locale, 'stat3')}</span></div>
+      <div style="display:grid;gap:8px"><span class="pf-stat-num" style="font-family:var(--font-display-inktrap);font-weight:800;line-height:1;color:var(--pf-accent,var(--pf-accent))">4</span><span style="font-size:14px;color:rgba(255,255,255,.62)">{t(locale, 'stat4')}</span></div>
     </section>
 
-    <section id="servicios" style="max-width:1280px;margin:0 auto;padding:64px 32px 96px;display:grid;gap:48px">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end">
+    <section id="servicios" class="pf-sec pf-sec--services">
+      <div class="pf-sec-head">
         <div style="display:grid;gap:16px">
           <span style="font-family:var(--font-pixel);font-size:13px;letter-spacing:.14em;color:var(--pf-accent,var(--pf-accent))">{t(locale, 'servicesEyebrow')}</span>
-          <h2 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:46px;line-height:1.05;letter-spacing:-.02em;margin:0">{t(locale, 'servicesTitle')}</h2>
+          <h2 class="pf-h2" style="font-family:var(--font-display-inktrap);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin:0">{t(locale, 'servicesTitle')}</h2>
         </div>
         <p style="font-size:17px;line-height:1.6;color:rgba(255,255,255,.68);margin:0">{t(locale, 'servicesLead')}</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
-        <div style="display:grid;gap:16px;align-content:start;padding:32px;border:1px solid rgba(255,255,255,.14);border-radius:28px;transition:border-color 220ms cubic-bezier(.2,.7,.2,1),background 220ms" data-hv="4">
+      <div class="pf-grid-3">
+        <div class="pf-card" style="display:grid;gap:16px;align-content:start;border:1px solid rgba(255,255,255,.14);border-radius:28px;transition:border-color 220ms cubic-bezier(.2,.7,.2,1),background 220ms" data-hv="4">
           <span style="font-family:var(--font-pixel);font-size:13px;color:var(--pf-violet)">01</span>
           <h3 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:23px;margin:0">{t(locale, 's1t')}</h3>
           <p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.66);margin:0">{t(locale, 's1d')}</p>
         </div>
-        <div style="display:grid;gap:16px;align-content:start;padding:32px;border:1px solid rgba(255,255,255,.14);border-radius:28px;transition:border-color 220ms cubic-bezier(.2,.7,.2,1),background 220ms" data-hv="4">
+        <div class="pf-card" style="display:grid;gap:16px;align-content:start;border:1px solid rgba(255,255,255,.14);border-radius:28px;transition:border-color 220ms cubic-bezier(.2,.7,.2,1),background 220ms" data-hv="4">
           <span style="font-family:var(--font-pixel);font-size:13px;color:var(--pf-violet)">02</span>
           <h3 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:23px;margin:0">{t(locale, 's2t')}</h3>
           <p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.66);margin:0">{t(locale, 's2d')}</p>
         </div>
-        <div style="display:grid;gap:16px;align-content:start;padding:32px;border:1px solid rgba(255,255,255,.14);border-radius:28px;transition:border-color 220ms cubic-bezier(.2,.7,.2,1),background 220ms" data-hv="4">
+        <div class="pf-card" style="display:grid;gap:16px;align-content:start;border:1px solid rgba(255,255,255,.14);border-radius:28px;transition:border-color 220ms cubic-bezier(.2,.7,.2,1),background 220ms" data-hv="4">
           <span style="font-family:var(--font-pixel);font-size:13px;color:var(--pf-violet)">03</span>
           <h3 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:23px;margin:0">{t(locale, 's3t')}</h3>
           <p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.66);margin:0">{t(locale, 's3d')}</p>
         </div>
-        <div style="display:grid;gap:16px;align-content:start;padding:32px;border:1px solid rgba(255,255,255,.14);border-radius:28px;transition:border-color 220ms cubic-bezier(.2,.7,.2,1),background 220ms" data-hv="4">
+        <div class="pf-card" style="display:grid;gap:16px;align-content:start;border:1px solid rgba(255,255,255,.14);border-radius:28px;transition:border-color 220ms cubic-bezier(.2,.7,.2,1),background 220ms" data-hv="4">
           <span style="font-family:var(--font-pixel);font-size:13px;color:var(--pf-violet)">04</span>
           <h3 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:23px;margin:0">{t(locale, 's4t')}</h3>
           <p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.66);margin:0">{t(locale, 's4d')}</p>
         </div>
-        <div style="display:grid;gap:16px;align-content:start;padding:32px;border:1px solid rgba(255,255,255,.14);border-radius:28px;transition:border-color 220ms cubic-bezier(.2,.7,.2,1),background 220ms" data-hv="4">
+        <div class="pf-card" style="display:grid;gap:16px;align-content:start;border:1px solid rgba(255,255,255,.14);border-radius:28px;transition:border-color 220ms cubic-bezier(.2,.7,.2,1),background 220ms" data-hv="4">
           <span style="font-family:var(--font-pixel);font-size:13px;color:var(--pf-violet)">05</span>
           <h3 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:23px;margin:0">{t(locale, 's5t')}</h3>
           <p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.66);margin:0">{t(locale, 's5d')}</p>
         </div>
-        <a href="#contacto" style="display:grid;gap:16px;align-content:center;justify-items:start;padding:32px;border-radius:28px;background:var(--pf-violet);color:#fff;transition:transform 220ms cubic-bezier(.2,.7,.2,1)" data-hv="5">
+        <a href="#contacto" class="pf-card" style="display:grid;gap:16px;align-content:center;justify-items:start;border-radius:28px;background:var(--pf-violet);color:#fff;transition:transform 220ms cubic-bezier(.2,.7,.2,1)" data-hv="5">
           <span style="font-family:var(--font-pixel);font-size:13px;color:var(--pf-accent,var(--pf-accent))">/ BRIEF</span>
           <h3 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:23px;margin:0">{t(locale, 'briefTitle')}</h3>
           <span style="font-size:15px;font-weight:800">{t(locale, 'briefCta')}</span>
@@ -119,17 +131,17 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
     </section>
 
     <section id="proyectos" style="background:var(--pf-bone);color:var(--pf-ground)">
-      <div style="max-width:1280px;margin:0 auto;padding:96px 32px;display:grid;gap:48px">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end">
+      <div class="pf-sec">
+        <div class="pf-sec-head">
           <div style="display:grid;gap:16px">
             <span style="font-family:var(--font-pixel);font-size:13px;letter-spacing:.14em;color:var(--pf-violet)">PORTFOLIO</span>
-            <h2 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:46px;line-height:1.05;letter-spacing:-.02em;margin:0;color:var(--pf-ground)">{t(locale, 'workTitle')}</h2>
+            <h2 class="pf-h2" style="font-family:var(--font-display-inktrap);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin:0;color:var(--pf-ground)">{t(locale, 'workTitle')}</h2>
           </div>
           <p style="font-size:17px;line-height:1.6;color:rgba(9,9,45,.7);margin:0">{t(locale, 'workLead')}</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px">
+        <div class="pf-grid-projects">
           <article style="display:grid;gap:20px;align-content:start;min-width:0">
-            <div style="position:relative;height:320px;border-radius:36px;overflow:hidden;background:var(--pf-violet)"><img src="/img/7ab6ecbd.webp" alt="Brotea Wizard" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
+            <div class="pf-proj-img" style="background:var(--pf-violet)"><img src="/img/7ab6ecbd.webp" alt="Brotea Wizard" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
               <span style="font-family:var(--font-pixel);font-size:11px;letter-spacing:.1em;padding:6px 12px;border-radius:999px;background:rgba(9,9,45,.08)">{t(locale, 'p1tag1')}</span>
               <span style="font-family:var(--font-pixel);font-size:11px;letter-spacing:.1em;padding:6px 12px;border-radius:999px;background:rgba(9,9,45,.08)">{t(locale, 'p1tag2')}</span>
@@ -139,7 +151,7 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
             <p style="font-size:16px;line-height:1.6;color:rgba(9,9,45,.7);margin:0">{t(locale, 'p1d')}</p>
           </article>
           <article style="display:grid;gap:20px;align-content:start;min-width:0">
-            <div style="position:relative;height:320px;border-radius:36px;overflow:hidden;background:var(--pf-ground-green)"><img src="/img/5f98276c.webp" alt="Action Item" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
+            <div class="pf-proj-img" style="background:var(--pf-ground-green)"><img src="/img/5f98276c.webp" alt="Action Item" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
               <span style="font-family:var(--font-pixel);font-size:11px;letter-spacing:.1em;padding:6px 12px;border-radius:999px;background:rgba(9,9,45,.08)">{t(locale, 'p2tag1')}</span>
               <span style="font-family:var(--font-pixel);font-size:11px;letter-spacing:.1em;padding:6px 12px;border-radius:999px;background:rgba(9,9,45,.08)">{t(locale, 'p2tag2')}</span>
@@ -148,7 +160,7 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
             <p style="font-size:16px;line-height:1.6;color:rgba(9,9,45,.7);margin:0">{t(locale, 'p2d')}</p>
           </article>
           <article style="display:grid;gap:20px;align-content:start;min-width:0">
-            <div style="position:relative;height:320px;border-radius:36px;overflow:hidden;background:var(--pf-ground-garnet)"><img src="/img/0913e392.webp" alt="Token2049 Dubai" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
+            <div class="pf-proj-img" style="background:var(--pf-ground-garnet)"><img src="/img/0913e392.webp" alt="Token2049 Dubai" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
               <span style="font-family:var(--font-pixel);font-size:11px;letter-spacing:.1em;padding:6px 12px;border-radius:999px;background:rgba(9,9,45,.08)">{t(locale, 'p3tag1')}</span>
               <span style="font-family:var(--font-pixel);font-size:11px;letter-spacing:.1em;padding:6px 12px;border-radius:999px;background:rgba(9,9,45,.08)">{t(locale, 'p3tag2')}</span>
@@ -157,7 +169,7 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
             <p style="font-size:16px;line-height:1.6;color:rgba(9,9,45,.7);margin:0">{t(locale, 'p3d')}</p>
           </article>
           <article style="display:grid;gap:20px;align-content:start;min-width:0">
-            <div style="position:relative;height:320px;border-radius:36px;overflow:hidden;background:var(--pf-violet)"><img src="/img/e2d1a784.webp" alt="Financial Academy" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
+            <div class="pf-proj-img" style="background:var(--pf-violet)"><img src="/img/e2d1a784.webp" alt="Financial Academy" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
               <span style="font-family:var(--font-pixel);font-size:11px;letter-spacing:.1em;padding:6px 12px;border-radius:999px;background:rgba(9,9,45,.08)">{t(locale, 'p4tag1')}</span>
               <span style="font-family:var(--font-pixel);font-size:11px;letter-spacing:.1em;padding:6px 12px;border-radius:999px;background:rgba(9,9,45,.08)">{t(locale, 'p4tag2')}</span>
@@ -169,25 +181,25 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
       </div>
     </section>
 
-    <section id="productos" style="max-width:1280px;margin:0 auto;padding:96px 32px;display:grid;gap:48px">
+    <section id="productos" class="pf-sec">
       <div style="display:grid;gap:16px;max-width:640px">
         <span style="font-family:var(--font-pixel);font-size:13px;letter-spacing:.14em;color:var(--pf-accent,var(--pf-accent))">{t(locale, 'productsEyebrow')}</span>
-        <h2 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:46px;line-height:1.05;letter-spacing:-.02em;margin:0">{t(locale, 'productsTitle')}</h2>
+        <h2 class="pf-h2" style="font-family:var(--font-display-inktrap);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin:0">{t(locale, 'productsTitle')}</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
-        <div style="display:grid;gap:20px;align-content:start;padding:36px;border-radius:48px;background:radial-gradient(ellipse 80% 70% at 20% 10%,rgba(179,180,255,.35) 0%,rgba(128,129,255,.14) 45%,rgba(255,255,255,.04) 100%);border:1px solid rgba(255,255,255,.14)">
+      <div class="pf-grid-3">
+        <div class="pf-prod-card" style="display:grid;gap:20px;align-content:start;background:radial-gradient(ellipse 80% 70% at 20% 10%,rgba(179,180,255,.35) 0%,rgba(128,129,255,.14) 45%,rgba(255,255,255,.04) 100%);border:1px solid rgba(255,255,255,.14)">
           <!-- Los logos de producto van con alt="" a propósito: el <h3> de al lado ya
        dice el nombre, y un alt repetido se lee dos veces en un lector de pantalla. -->
           <img src="/img/785cf52c.webp" alt="" style="height:44px;width:auto">
           <h3 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:24px;margin:0">Wizard <span style="font-size:14px;color:rgba(255,255,255,.5)">®</span></h3>
           <p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.68);margin:0">{t(locale, 'pr1')}</p>
         </div>
-        <div style="display:grid;gap:20px;align-content:start;padding:36px;border-radius:48px;background:radial-gradient(ellipse 80% 70% at 20% 10%,rgba(179,180,255,.35) 0%,rgba(128,129,255,.14) 45%,rgba(255,255,255,.04) 100%);border:1px solid rgba(255,255,255,.14)">
+        <div class="pf-prod-card" style="display:grid;gap:20px;align-content:start;background:radial-gradient(ellipse 80% 70% at 20% 10%,rgba(179,180,255,.35) 0%,rgba(128,129,255,.14) 45%,rgba(255,255,255,.04) 100%);border:1px solid rgba(255,255,255,.14)">
           <img src="/img/f3d6e09c.webp" alt="" style="height:44px;width:auto">
           <h3 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:24px;margin:0">Mentora <span style="font-size:14px;color:rgba(255,255,255,.5)">®</span></h3>
           <p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.68);margin:0">{t(locale, 'pr2')}</p>
         </div>
-        <div style="display:grid;gap:20px;align-content:start;padding:36px;border-radius:48px;background:radial-gradient(ellipse 80% 70% at 20% 10%,rgba(179,180,255,.35) 0%,rgba(128,129,255,.14) 45%,rgba(255,255,255,.04) 100%);border:1px solid rgba(255,255,255,.14)">
+        <div class="pf-prod-card" style="display:grid;gap:20px;align-content:start;background:radial-gradient(ellipse 80% 70% at 20% 10%,rgba(179,180,255,.35) 0%,rgba(128,129,255,.14) 45%,rgba(255,255,255,.04) 100%);border:1px solid rgba(255,255,255,.14)">
           <img src="/img/b98578d0.webp" alt="" style="height:44px;width:auto">
           <h3 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:24px;margin:0">Brotea Kit <span style="font-size:14px;color:rgba(255,255,255,.5)">®</span></h3>
           <p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.68);margin:0">{t(locale, 'pr3')}</p>
@@ -196,38 +208,38 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
     </section>
 
     <section id="equipo" style="background:var(--pf-ground);border-top:1px solid rgba(255,255,255,.10)">
-      <div style="max-width:1280px;margin:0 auto;padding:96px 32px;display:grid;gap:48px">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end">
+      <div class="pf-sec">
+        <div class="pf-sec-head">
           <div style="display:grid;gap:16px">
             <span style="font-family:var(--font-pixel);font-size:13px;letter-spacing:.14em;color:var(--pf-accent,var(--pf-accent))">{t(locale, 'teamEyebrow')}</span>
-            <h2 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:46px;line-height:1.05;letter-spacing:-.02em;margin:0">{t(locale, 'teamTitle')}</h2>
+            <h2 class="pf-h2" style="font-family:var(--font-display-inktrap);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin:0">{t(locale, 'teamTitle')}</h2>
           </div>
           <p style="font-size:17px;line-height:1.6;color:rgba(255,255,255,.68);margin:0">{t(locale, 'teamLead')}</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px">
+        <div class="pf-grid-team">
           <div style="display:grid;gap:12px;min-width:0">
-            <div style="position:relative;height:300px;border-radius:24px;overflow:hidden;background:var(--pf-violet)"><img src="/img/12b36b34.webp" alt="Retrato" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
+            <div class="pf-team-img" style="background:var(--pf-violet)"><img src="/img/12b36b34.webp" alt="Retrato" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
             <div style="background:var(--pf-violet);border-radius:20px;padding:18px 20px;display:grid;gap:4px">
               <span style="font-size:17px;font-weight:800;line-height:1.15">Cristhian Rodríguez</span>
               <span style="font-size:13px;color:rgba(255,255,255,.86)">{t(locale, 'role1')}</span>
             </div>
           </div>
           <div style="display:grid;gap:12px;min-width:0">
-            <div style="position:relative;height:300px;border-radius:24px;overflow:hidden;background:var(--pf-violet)"><img src="/img/82b52b4c.webp" alt="Retrato" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
+            <div class="pf-team-img" style="background:var(--pf-violet)"><img src="/img/82b52b4c.webp" alt="Retrato" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
             <div style="background:var(--pf-violet);border-radius:20px;padding:18px 20px;display:grid;gap:4px">
               <span style="font-size:17px;font-weight:800;line-height:1.15">Rafael Ojeda Quintana</span>
               <span style="font-size:13px;color:rgba(255,255,255,.86)">{t(locale, 'role2')}</span>
             </div>
           </div>
           <div style="display:grid;gap:12px;min-width:0">
-            <div style="position:relative;height:300px;border-radius:24px;overflow:hidden;background:var(--pf-violet)"><img src="/img/d443c619.webp" alt="Retrato" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
+            <div class="pf-team-img" style="background:var(--pf-violet)"><img src="/img/d443c619.webp" alt="Retrato" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
             <div style="background:var(--pf-violet);border-radius:20px;padding:18px 20px;display:grid;gap:4px">
               <span style="font-size:17px;font-weight:800;line-height:1.15">Manuel Sanz</span>
               <span style="font-size:13px;color:rgba(255,255,255,.86)">{t(locale, 'role3')}</span>
             </div>
           </div>
           <div style="display:grid;gap:12px;min-width:0">
-            <div style="position:relative;height:300px;border-radius:24px;overflow:hidden;background:var(--pf-violet)"><img src="/img/2cf67f1a.webp" alt="Retrato" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
+            <div class="pf-team-img" style="background:var(--pf-violet)"><img src="/img/2cf67f1a.webp" alt="Retrato" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
             <div style="background:var(--pf-violet);border-radius:20px;padding:18px 20px;display:grid;gap:4px">
               <span style="font-size:17px;font-weight:800;line-height:1.15">Mel Troopdegen</span>
               <span style="font-size:13px;color:rgba(255,255,255,.86)">{t(locale, 'role4')}</span>
@@ -237,25 +249,25 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
       </div>
     </section>
 
-    <section id="aliados" style="max-width:1280px;margin:0 auto;padding:96px 32px;display:grid;gap:48px">
+    <section id="aliados" class="pf-sec">
       <div style="display:grid;gap:16px;max-width:640px">
         <span style="font-family:var(--font-pixel);font-size:13px;letter-spacing:.14em;color:var(--pf-accent,var(--pf-accent))">{t(locale, 'partnersEyebrow')}</span>
-        <h2 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:46px;line-height:1.05;letter-spacing:-.02em;margin:0">{t(locale, 'partnersTitle')}</h2>
+        <h2 class="pf-h2" style="font-family:var(--font-display-inktrap);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin:0">{t(locale, 'partnersTitle')}</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
-        <div style="display:grid;gap:12px;padding:32px;border:1px solid rgba(255,255,255,.14);border-radius:28px;align-content:start">
+      <div class="pf-grid-partners">
+        <div class="pf-card" style="display:grid;gap:12px;border:1px solid rgba(255,255,255,.14);border-radius:28px;align-content:start">
           <h3 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:22px;margin:0">University conventions</h3>
           <p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.66);margin:0">{t(locale, 'a1')}</p>
         </div>
-        <div style="display:grid;gap:12px;padding:32px;border:1px solid rgba(255,255,255,.14);border-radius:28px;align-content:start">
+        <div class="pf-card" style="display:grid;gap:12px;border:1px solid rgba(255,255,255,.14);border-radius:28px;align-content:start">
           <h3 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:22px;margin:0">Chain Foundation</h3>
           <p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.66);margin:0">{t(locale, 'a2')}</p>
         </div>
-        <div style="display:grid;gap:12px;padding:32px;border:1px solid rgba(255,255,255,.14);border-radius:28px;align-content:start">
+        <div class="pf-card" style="display:grid;gap:12px;border:1px solid rgba(255,255,255,.14);border-radius:28px;align-content:start">
           <h3 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:22px;margin:0">Investor &amp; Ventures</h3>
           <p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.66);margin:0">{t(locale, 'a3')}</p>
         </div>
-        <div style="display:grid;gap:12px;padding:32px;border:1px solid rgba(255,255,255,.14);border-radius:28px;align-content:start">
+        <div class="pf-card" style="display:grid;gap:12px;border:1px solid rgba(255,255,255,.14);border-radius:28px;align-content:start">
           <h3 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:22px;margin:0">Community</h3>
           <p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.66);margin:0">{t(locale, 'a4')}</p>
         </div>
@@ -263,10 +275,10 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
     </section>
 
     <section id="contacto" style="background:var(--pf-violet);color:#fff">
-      <div style="max-width:1280px;margin:0 auto;padding:96px 32px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:64px;align-items:start">
+      <div class="pf-contact">
         <div style="display:grid;gap:28px">
           <span style="font-family:var(--font-pixel);font-size:13px;letter-spacing:.14em;color:var(--pf-accent,var(--pf-accent))">{t(locale, 'contactEyebrow')}</span>
-          <h2 style="font-family:var(--font-display-inktrap);font-weight:800;font-size:56px;line-height:1;letter-spacing:-.03em;margin:0">{t(locale, 'contactTitle')}</h2>
+          <h2 class="pf-h2-xl" style="font-family:var(--font-display-inktrap);font-weight:800;line-height:1;letter-spacing:-.03em;margin:0">{t(locale, 'contactTitle')}</h2>
           <p style="font-size:18px;line-height:1.6;color:rgba(255,255,255,.86);margin:0;max-width:46ch">{t(locale, 'contactLead')}</p>
           <div style="display:grid;gap:20px;padding-top:8px">
             <div style="display:grid;gap:4px"><span style="font-size:13px;color:rgba(255,255,255,.86)">Email</span><a href="mailto:hola@brotea.xyz" style="font-size:20px;font-weight:800">hola@brotea.xyz</a></div>
@@ -275,7 +287,8 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
         </div>
         <form
           id="pf-form"
-          aria-labelledby="pf-form-title" style="display:grid;gap:20px;background:rgba(9,9,45,.42);border:1px solid rgba(255,255,255,.32);border-radius:36px;padding:36px" 
+          class="pf-form-card"
+          aria-labelledby="pf-form-title" style="display:grid;gap:20px;background:rgba(9,9,45,.42);border:1px solid rgba(255,255,255,.32)"
           data-endpoint={ENDPOINT}
           data-project="portfolio"
           data-msg-sending={t(locale, 'form.sending')}
@@ -285,7 +298,7 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
         >
           <h3 id="pf-form-title" style="font-family:var(--font-display-inktrap);font-weight:800;font-size:20px;margin:0">{t(locale, 'formTitle')}</h3>
           <p id="pf-form-hint" style="font-size:13px;line-height:1.5;color:rgba(255,255,255,.86);margin:0">{t(locale, 'formHint')}</p>
-          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+          <div class="pf-form-row">
             <label for="pf-name" style="display:grid;gap:8px;font-size:14px;font-weight:800;min-width:0">{t(locale, 'fName')}
               <input id="pf-name" name="nombre" type="text" autocomplete="name" required aria-required="true" aria-describedby="pf-form-hint" style="background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.45);border-radius:14px;padding:14px 16px;color:#fff;font-family:var(--font-body);font-size:15px;font-weight:400;width:100%;box-sizing:border-box" data-fv="2">
             </label>
@@ -309,7 +322,7 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
       <div style="max-width:1280px;margin:0 auto;padding:48px 32px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap">
         <img src="/img/fda5ee03.webp" alt="Brotea" style="height:26px;width:auto">
         <span style="font-family:var(--font-pixel);font-size:12px;letter-spacing:.12em;color:rgba(255,255,255,.62)">LEARN GROW LEAD · APRENDE CRECE LIDERA</span>
-        <div style="display:flex;gap:24px;font-size:14px;color:rgba(255,255,255,.7)">
+        <div class="pf-foot-links" style="display:flex;align-items:center;gap:24px;font-size:14px;color:rgba(255,255,255,.7)">
           <a href="#top">LinkedIn</a>
           <a href="#top">GitHub</a>
           <a href="#top">Discord</a>
@@ -323,6 +336,29 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
 <script>
   // Un único bundle sirve las dos rutas, así que los mensajes viajan en data-*
   // renderizados en servidor, en el idioma de la página.
+  // Menú móvil: las etiquetas accesibles llegan server-rendered en data-* (un
+  // único bundle sirve los dos idiomas, nada de textos en el JS).
+  const menuBtn = document.getElementById('pf-menu-btn') as HTMLButtonElement | null;
+  const nav = document.getElementById('pf-nav');
+  const setMenu = (open: boolean) => {
+    if (!menuBtn || !nav) return;
+    nav.classList.toggle('is-open', open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+    const label = open ? menuBtn.dataset.labelClose : menuBtn.dataset.labelOpen;
+    if (label) menuBtn.setAttribute('aria-label', label);
+  };
+  menuBtn?.addEventListener('click', () => setMenu(!nav?.classList.contains('is-open')));
+  nav?.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) setMenu(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav?.classList.contains('is-open')) {
+      setMenu(false);
+      // El foco estaba dentro del panel ahora display:none; sin esto cae al body.
+      menuBtn?.focus();
+    }
+  });
+
   const form = document.getElementById('pf-form') as HTMLFormElement;
   const status = document.getElementById('pf-status') as HTMLElement;
   form?.addEventListener('submit', async (e) => {
@@ -589,11 +625,178 @@ a:hover { text-decoration-thickness: 2px; }
 
 
 
-  html { scroll-behavior: smooth; }
+  /* El header sticky mide ~76px en móvil: sin este offset los anchors del
+     menú dejan el título de la sección debajo del header translúcido. */
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; }
   body { margin: 0; background: var(--pf-ground); }
   a { color: inherit; text-decoration: none; }
   a:hover { color: var(--pf-accent, var(--pf-accent)); }
   @keyframes pf-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* =============================================================
+   LAYOUT RESPONSIVE (feature 53)
+   -------------------------------------------------------------
+   El layout vivía en atributos style (especificidad máxima), así que ninguna
+   media query podía tocarlo. Todo lo que cambia con el ancho vive AQUÍ y solo
+   aquí: si una propiedad de estas clases reaparece inline, gana el inline y
+   el móvil vuelve a romperse. Colores y decoración siguen inline con tokens.
+   Breakpoints: 1024 (rejillas densas → 2), 950 (nav → menú), 720 (todo → 1
+   columna), 600 (switcher al panel), 480 (remates de espaciado).
+   ============================================================= */
+
+.pf-page { overflow-x: hidden; }
+
+/* --- Header / nav ------------------------------------------- */
+.pf-header {
+  position: sticky; top: 0; z-index: 50;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  /* Sin backdrop-filter este rgba ya lee como fondo sólido suficiente. */
+  background: rgba(9,9,45,.72);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+.pf-header-in {
+  max-width: 1280px; margin: 0 auto;
+  padding: 16px clamp(16px,4vw,32px);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.pf-nav { display: flex; align-items: center; gap: 32px; font-size: 14px; letter-spacing: .01em; }
+.pf-nav-lang { display: none; }
+.pf-header-actions { display: flex; align-items: center; gap: 16px; }
+.pf-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 22px; font-size: 14px; white-space: nowrap;
+}
+.pf-menu-btn {
+  display: none; align-items: center; justify-content: center;
+  min-width: 44px; min-height: 44px; padding: 0;
+  background: transparent; color: #fff;
+  border: 1px solid rgba(255,255,255,.28); border-radius: 12px;
+  cursor: pointer;
+}
+.pf-menu-icon { position: relative; display: block; width: 18px; height: 2px; background: currentColor; border-radius: 1px; }
+.pf-menu-icon::before, .pf-menu-icon::after {
+  content: ''; position: absolute; left: 0; width: 18px; height: 2px;
+  background: currentColor; border-radius: 1px; transition: transform 180ms ease;
+}
+.pf-menu-icon::before { top: -6px; }
+.pf-menu-icon::after { top: 6px; }
+.pf-menu-btn[aria-expanded="true"] .pf-menu-icon { background: transparent; }
+.pf-menu-btn[aria-expanded="true"] .pf-menu-icon::before { transform: translateY(6px) rotate(45deg); }
+.pf-menu-btn[aria-expanded="true"] .pf-menu-icon::after { transform: translateY(-6px) rotate(-45deg); }
+
+/* --- Secciones y rejillas ------------------------------------ */
+.pf-hero {
+  max-width: 1280px; margin: 0 auto;
+  padding: clamp(48px,10vw,96px) clamp(16px,4vw,32px) clamp(40px,8vw,64px);
+  display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr);
+  gap: clamp(32px,5vw,64px); align-items: center;
+}
+.pf-hero-copy { display: grid; gap: clamp(20px,4vw,32px); min-width: 0; }
+.pf-hero-img {
+  position: relative; aspect-ratio: 1/1; max-height: 460px;
+  border-radius: clamp(28px,7vw,48px); overflow: hidden;
+}
+.pf-marquee { display: flex; width: max-content; }
+@media (prefers-reduced-motion: no-preference) {
+  .pf-marquee { animation: pf-marquee 32s linear infinite; }
+}
+.pf-stats {
+  max-width: 1280px; margin: 0 auto;
+  padding: clamp(40px,8vw,64px) clamp(16px,4vw,32px);
+  display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 32px;
+}
+.pf-stat-num { font-size: clamp(34px,9vw,52px); }
+.pf-sec {
+  max-width: 1280px; margin: 0 auto;
+  padding: clamp(48px,10vw,96px) clamp(16px,4vw,32px);
+  display: grid; gap: clamp(32px,6vw,48px);
+}
+.pf-sec--services { padding-top: clamp(40px,8vw,64px); }
+.pf-sec-head { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; }
+.pf-h2 { font-size: clamp(30px,6vw,46px); }
+.pf-h2-xl { font-size: clamp(34px,7vw,56px); }
+.pf-grid-3 { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; }
+.pf-grid-projects { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 32px; }
+.pf-grid-team { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 20px; }
+.pf-grid-partners { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
+.pf-card { padding: clamp(20px,5vw,32px); }
+.pf-prod-card { padding: clamp(20px,5vw,36px); border-radius: clamp(28px,8vw,48px); }
+.pf-proj-img {
+  position: relative; aspect-ratio: 16/10; max-height: 320px;
+  border-radius: clamp(20px,5vw,36px); overflow: hidden;
+}
+.pf-team-img { position: relative; aspect-ratio: 4/5; max-height: 300px; border-radius: 24px; overflow: hidden; }
+.pf-contact {
+  max-width: 1280px; margin: 0 auto;
+  padding: clamp(48px,10vw,96px) clamp(16px,4vw,32px);
+  display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr);
+  gap: clamp(32px,6vw,64px); align-items: start;
+}
+.pf-form-card { padding: clamp(20px,5vw,36px); border-radius: clamp(24px,6vw,36px); }
+.pf-form-row { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+
+/* --- Breakpoints --------------------------------------------- */
+@media (max-width: 1024px) {
+  .pf-header-in { gap: 16px; }
+  .pf-nav { gap: 20px; }
+  .pf-stats { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
+  .pf-grid-3 { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .pf-grid-team { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+
+@media (max-width: 950px) {
+  /* La fila inline no cabe: los enlaces pasan a un panel bajo la cabecera. */
+  .pf-nav {
+    display: none;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--pf-ground);
+    border-bottom: 1px solid rgba(255,255,255,.10);
+    padding: 12px clamp(16px,4vw,32px) 20px;
+  }
+  .pf-nav.is-open { display: grid; gap: 4px; }
+  .pf-nav a {
+    display: flex; align-items: center;
+    min-height: 48px; padding: 0 14px;
+    border-radius: 14px; font-size: 16px;
+  }
+  .pf-nav a:hover { background: rgba(255,255,255,.08); }
+  .pf-menu-btn { display: inline-flex; }
+  .pf-cta { min-height: 44px; }
+  .pf-header-actions .lang a { display: inline-flex; align-items: center; min-height: 44px; }
+}
+
+@media (max-width: 720px) {
+  .pf-hero { grid-template-columns: minmax(0,1fr); }
+  .pf-sec-head { grid-template-columns: minmax(0,1fr); gap: 16px; align-items: start; }
+  .pf-grid-3 { grid-template-columns: minmax(0,1fr); }
+  .pf-grid-projects { grid-template-columns: minmax(0,1fr); }
+  .pf-grid-partners { grid-template-columns: minmax(0,1fr); }
+  .pf-contact { grid-template-columns: minmax(0,1fr); }
+  .pf-form-row { grid-template-columns: minmax(0,1fr); }
+  .pf-foot-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 8px; }
+}
+
+@media (max-width: 600px) {
+  /* No caben logo + switcher + CTA + botón en 320px: el switcher baja al
+     panel del menú (mismo componente, segunda instancia). */
+  /* !important: el CSS scoped de LanguageSwitcher (atributo data-astro-cid)
+     gana en especificidad/orden a estas reglas de página y el componente es
+     generado (no se edita); sin esto los enlaces quedan bajo 44px. */
+  .pf-header-actions > .lang { display: none !important; }
+  .pf-nav-lang { display: flex; padding: 8px 6px 0; }
+  .pf-nav-lang .lang a {
+    display: inline-flex; align-items: center; justify-content: center;
+    box-sizing: border-box; min-height: 44px; min-width: 44px;
+    padding: 0 14px !important; font-size: 15px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .pf-header-in { gap: 12px; }
+  .pf-cta { padding: 10px 14px; gap: 6px; }
+  .pf-cta-arrow { display: none; }
+}
 
 /* Reglas que en el artefacto eran atributos style-hover / style-focus,
    que ningún navegador aplica. Convertidas a CSS real; el foco visible es
