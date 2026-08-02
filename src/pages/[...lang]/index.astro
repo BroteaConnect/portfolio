@@ -366,7 +366,6 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
   --pf-violet: var(--accent);
   --pf-violet-soft: color-mix(in srgb, var(--accent) 70%, white);
   --pf-pink: #FA699F;
-  --pf-pink-soft: color-mix(in srgb, #FA699F 25%, white);
   --pf-bone: #F3F1EA;
   /* Los otros dos grounds nocturnos de las guías de marca (Node Green y Deep
      Garnet). Tampoco están en el vocabulario de tokens: si se usan fuera de
@@ -400,65 +399,34 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
   --brotea-violet-deep:#5F60D9;
 
   --brotea-glow:       var(--pf-accent);  /* Glow Yellow — secondary accent */
-  --brotea-glow-soft:  #F0FFCC;
-  --brotea-glow-deep:  #CDE88B;
 
   --brotea-pink:       var(--pf-pink);  /* Bloom Pink — tertiary accent */
-  --brotea-pink-deep:  #E24E87;
 
   --brotea-eggplant:   var(--pf-ground);  /* Dark Eggplant — default dark ground */
   --brotea-green:      #022922;  /* Node Green — secondary dark ground */
   --brotea-garnet:     #330A0F;  /* Deep Garnet — accent dark ground */
 
-  --brotea-black:      #0A0A0A;
-  --brotea-white:      #FFFFFF;
   --brotea-bone:       var(--pf-bone);  /* warm off-white (light backgrounds) */
 
   /* Legacy aliases — keep in case older files reference them */
-  --brotea-lime:       var(--brotea-glow);
-  --brotea-morado:     var(--brotea-violet);
-  --brotea-night:      var(--brotea-eggplant);
-  --brotea-forest:     var(--brotea-green);
-  --brotea-maroon:     var(--brotea-garnet);
 
   /* ---------- Neutrals ------------------------------------ */
   --n-0:   #FFFFFF;
-  --n-50:  #FAF8F2;
-  --n-100: #F1EEE5;
-  --n-200: #E0DCD1;
-  --n-300: #C3BFB4;
-  --n-400: #8F8C82;
   --n-500: #5F5D55;
   --n-700: #2B2A25;
-  --n-900: #111110;
 
   /* ---------- Semantic surfaces (light theme default) ----- */
   --bg:          var(--brotea-bone);
-  --bg-elev:     var(--n-0);
-  --bg-contrast: var(--brotea-eggplant);
-  --bg-accent:   var(--brotea-violet);
 
   --fg-1:        var(--brotea-eggplant);   /* primary text */
   --fg-2:        var(--n-700);             /* secondary text */
   --fg-3:        var(--n-500);             /* tertiary / meta */
-  --fg-on-dark:  var(--n-0);
-  --fg-on-violet:var(--n-0);
-  --fg-on-glow:  var(--brotea-eggplant);
-  --fg-on-pink:  var(--brotea-eggplant);
   --fg-accent:   var(--brotea-violet-deep);
 
-  --border:      var(--n-200);
-  --border-strong: var(--brotea-eggplant);
 
   /* ---------- Semantic (status) --------------------------- */
-  --success:     #2BA26B;
-  --warning:     #E4A126;
-  --danger:      #E0443E;
-  --info:        var(--brotea-violet);
 
   /* ---------- Type scale ---------------------------------- */
-  --font-display: 'PP Neue Machina', ui-sans-serif, system-ui, sans-serif;
-  --font-display-inktrap: 'PP Neue Machina Inktrap', 'PP Neue Machina', ui-sans-serif, system-ui, sans-serif;
   /* Las familias salen del tema, que ya sirve los OTF de la marca desde
      public/fonts. Dos avisos honestos:
      · el diseño usaba más pesos (light, medium, ultrabold…) de los dos que el
@@ -466,8 +434,7 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
      · 'Biform Pixel' (el detalle de píxel del sello) no está en el tema ni
        tenemos el fichero, así que cae a la pila monoespaciada. */
   --font-body: var(--font-sans);
-  --font-display: var(--font-sans);
-  --font-display-inktrap: var(--font-display, var(--font-sans));
+  --font-display-inktrap: var(--font-display);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --font-pixel: var(--font-mono);
 
@@ -488,61 +455,18 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
   --lh-body:    1.5; /* @kind other */
 
   --tracking-tight: -0.02em;
-  --tracking-normal: 0;
-  --tracking-wide:  0.08em;
   --tracking-caps:  0.12em;
 
   /* ---------- Radii ------------------------------------ */
-  --r-xs: 4px;
-  --r-sm: 8px;
-  --r-md: 14px;
-  --r-lg: 20px;
-  --r-xl: 28px;
-  --r-2xl: 36px;
-  --r-pill: 999px;
   /* Square motif — the brand's signature rounded-rect */
   --r-square: 48px;
 
   /* ---------- Elevation --------------------------------- */
-  --shadow-1: 0 1px 2px rgba(9, 9, 45, .06), 0 1px 1px rgba(9, 9, 45, .04);
-  --shadow-2: 0 4px 12px rgba(9, 9, 45, .08), 0 2px 4px rgba(9, 9, 45, .04);
-  --shadow-3: 0 12px 32px rgba(9, 9, 45, .14), 0 4px 8px rgba(9, 9, 45, .06);
-  --shadow-glow-violet: 0 0 0 4px rgba(128, 129, 255, .35);
-  --shadow-glow-glow:   0 0 0 4px rgba(230, 255, 169, .45);
 
   /* ---------- Spacing (4px base) ------------------------ */
-  --s-1: 4px;
-  --s-2: 8px;
-  --s-3: 12px;
-  --s-4: 16px;
-  --s-5: 20px;
-  --s-6: 24px;
-  --s-8: 32px;
-  --s-10: 40px;
-  --s-12: 48px;
-  --s-16: 64px;
-  --s-20: 80px;
-  --s-24: 96px;
 
   /* ---------- Motion ----------------------------------- */
-  --ease-out: cubic-bezier(.2, .7, .2, 1); /* @kind other */
-  --ease-in-out: cubic-bezier(.6, 0, .3, 1); /* @kind other */
-  --dur-1: 120ms; /* @kind other */
-  --dur-2: 220ms; /* @kind other */
-  --dur-3: 360ms; /* @kind other */
 
-  /* ---------- Signature gradients (from guidelines) ---- */
-  --grad-primary: linear-gradient(90deg,
-    var(--brotea-glow) 0%,
-    var(--brotea-violet) 55%,
-    var(--brotea-eggplant) 100%);
-  --grad-warm: linear-gradient(90deg,
-    var(--brotea-glow) 0%,
-    var(--brotea-pink) 50%,
-    var(--brotea-garnet) 100%);
-  --grad-bloom: linear-gradient(90deg,
-    var(--brotea-glow) 0%,
-    var(--brotea-green) 100%);
 }
 
 /* ============================================================
@@ -570,8 +494,6 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
   --fg-1: var(--n-0);
   --fg-2: rgba(255,255,255,.78);
   --fg-3: rgba(255,255,255,.55);
-  --border: rgba(255,255,255,.14);
-  --border-strong: var(--brotea-glow);
   --fg-accent: var(--brotea-glow);
 }
 
@@ -579,8 +501,6 @@ const ENDPOINT = import.meta.env.PUBLIC_REQUIREMENTS_ENDPOINT?.trim() || 'https:
   --fg-1: var(--brotea-eggplant);
   --fg-2: rgba(9,9,45,.78);
   --fg-3: rgba(9,9,45,.55);
-  --border: rgba(9,9,45,.16);
-  --border-strong: var(--brotea-eggplant);
   --fg-accent: var(--brotea-violet-deep);
 }
 
