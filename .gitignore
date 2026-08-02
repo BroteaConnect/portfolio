@@ -8,3 +8,5 @@ dist
 .DS_Store
 # sello de build (generado en cada build)
 public/version.json
+# artefactos del gate responsive headless (capturas locales)
+.responsive-check/
