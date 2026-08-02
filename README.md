@@ -35,18 +35,13 @@ brotea i18n check --app .  # what is missing
 - `src/locales/` — the copy, one JSON per language.
 - `public/img/` — the images, exported from the design.
 
-## What the design artifact had and this repo does not
+## Where it came from
 
-The artifact ran on its own runtime (`image-slot` elements, `style-hover` /
-`style-focus` attributes, `{{ }}` bindings, a language toggle in
-`localStorage`). None of that works in a browser on its own, so the port turned
-each into its real equivalent: `<img>`, CSS rules with `:hover` /
-`:focus-visible`, server-rendered copy, and language as **routes** with
-`hreflang`, which is what search engines index.
-
-Two known fidelity gaps, both from fonts the theme does not vendor: the design
-used more weights of PP Neue Machina than the two OTFs we ship (the browser
-synthesises the rest), and 'Biform Pixel' falls back to a monospace stack.
+It was a design artifact running on its own runtime, and porting it meant
+converting every piece of that runtime into something a browser actually
+executes — plus two honest fidelity gaps, both fonts. All of it, and the traps
+to avoid next time, is written down in
+[docs/porting-the-design-artifact.md](docs/porting-the-design-artifact.md).
 
 ## Deploy
 
